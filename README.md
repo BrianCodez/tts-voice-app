@@ -41,6 +41,28 @@ pip install -r requirements.txt
 OPENAI_API_KEY=your_api_key_here
 ```
 
+## Docker Installation
+
+You can also run the application using Docker:
+
+1. Build the Docker image:
+```bash
+docker build -t tts-app .
+```
+
+2. Run the container:
+```bash
+docker run -p 8501:8501 -v $(pwd)/output:/app/output -v $(pwd)/.env:/app/.env --name tts-app-container tts-app
+```
+
+This will:
+- Map port 8501 to access the Streamlit interface
+- Mount the output directory to persist generated audio files
+- Mount the .env file to provide environment variables
+- Create a container named 'tts-app-container'
+
+Access the application at http://localhost:8501
+
 ## Usage
 
 1. Start the Streamlit application:
@@ -67,6 +89,7 @@ tts-voice-app/
 ├── app.py              # Main application file
 ├── requirements.txt    # Project dependencies
 ├── .env               # Environment variables (create this file)
+├── Dockerfile         # Docker configuration file
 └── output/            # Generated audio files directory
 ```
 
